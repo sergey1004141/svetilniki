@@ -18,7 +18,7 @@ class Products extends Model
     public function scopeGetProduct(Builder $query, $IDs) {
         $plp = 'products_link_properties';
         $query
-            ->select([$this->table.'.id', $this->table.'.name'])
+            ->select([$this->table.'.id', $this->table.'.name', $this->table.'.price', $this->table.'.count'])
             ->whereIn($plp.".property_id", $IDs)
             ->join($plp, $plp.".product_id", '=', $this->table.'.id')
             ->distinct()
