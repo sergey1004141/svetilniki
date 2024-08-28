@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 trait ProductsTrait
 {
     public function getProducts(Request $request) {
-
-        return Products::getProduct(explode(',', $request->properties))->get()->toArray();
+        if ($request->properties ?? false)
+            return Products::getProduct(explode(',', $request->properties))->get()->toArray();
+        else
+            return [];
     }
 }
